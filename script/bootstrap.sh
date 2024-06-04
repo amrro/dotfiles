@@ -35,6 +35,7 @@ stow_apply () {
 install_dotfiles () {
   info "installing dotfiles"
   stow_apply zsh
+  stow_apply alacritty
 }
 
 install_dotfiles

@@ -7,5 +7,5 @@ My Dotfiles
 To apply the dotfiles, run the following command:
 
 ```bash
-scripts/bootstrap.sh
+script/bootstrap.sh
 ```
