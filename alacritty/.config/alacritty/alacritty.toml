@@ -16,7 +16,7 @@ blur = true
 option_as_alt = "Both"
 
 [font]
-normal.family = "Fantasque Sans Mono"
+normal.family = "JetBrainsMono Nerd Font"
 size = 18
 
 [cursor]
