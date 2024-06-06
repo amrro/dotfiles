@@ -22,7 +22,6 @@ fail () {
 
 stow_apply () {
   local dotfile=$1
-  info "applying $dotfile"
 
   if ! stow "$dotfile" -t ~; then
     fail "Failed to apply $dotfile"
@@ -36,6 +35,7 @@ install_dotfiles () {
   info "installing dotfiles"
   stow_apply zsh
   stow_apply alacritty
+  stow_apply nvim
 }
 
 install_dotfiles
