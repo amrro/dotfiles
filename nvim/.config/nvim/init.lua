@@ -6,6 +6,7 @@ vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
+vim.opt.termguicolors = true
 
 vim.opt.wildignore:append { 'node_modules' }
 
@@ -49,7 +50,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Keep signcolumn on by default
-vim.opt.signcolumn = 'yes'
+vim.opt.signcolumn = 'auto:2'
 
 -- Decrease update time
 vim.opt.updatetime = 250
@@ -127,6 +128,52 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- vim.diagnostic.config {
+--   virtual_text = false,
+--   signs = true,
+--   update_in_insert = true,
+--   underline = true,
+--   severity_sort = false,
+--   float = {
+--     border = 'rounded',
+--     source = 'if_many',
+--     header = '',
+--     prefix = '',
+--   },
+-- }
+
+-- LSP Diagnostics Options Setup
+local sign = function(opts)
+  vim.fn.sign_define(opts.name, {
+    texthl = opts.name,
+    text = opts.text,
+    numhl = '',
+  })
+end
+
+--
+sign { name = 'DiagnosticSignError', text = '' }
+sign { name = 'DiagnosticSignWarn', text = '' }
+sign { name = 'DiagnosticSignHint', text = '' }
+sign { name = 'DiagnosticSignInfo', text = '' }
+
+vim.g.rustaceanvim = {
+  -- Plugin configuration
+  tools = {},
+  -- LSP configuration
+  server = {
+    on_attach = function(client, bufnr)
+      -- you can also put keymaps in here
+    end,
+    default_settings = {
+      -- rust-analyzer language server configuration
+      ['rust-analyzer'] = {},
+    },
+  },
+  -- DAP configuration
+  dap = {},
+}
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -150,6 +197,58 @@ require('lazy').setup({
 
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+
+  { 'ellisonleao/gruvbox.nvim', priority = 1000, config = true },
+  {
+    'sainnhe/sonokai',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      -- Optionally configure and load the colorscheme
+      -- directly inside the plugin declaration.
+      vim.g.sonokai_enable_italic = true
+      vim.g.sonokai_diagnostic_text_highlight = true
+      vim.g.sonokai_diagnostic_virtual_text = 'colored'
+
+      vim.cmd.colorscheme 'sonokai'
+    end,
+  },
+
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      require('lualine').setup {
+        options = {
+          theme = 'sonokai',
+          component_separators = '',
+          section_separators = { left = '', right = '' },
+        },
+        sections = {
+          lualine_a = { { 'mode', separator = { left = '' }, right_padding = 2 } },
+          lualine_b = { 'filename', 'branch' },
+          lualine_c = {
+            '%=', --[[ add your center compoentnts here in place of this comment ]]
+          },
+          lualine_x = { 'diagnostics' },
+          lualine_y = { 'filetype', 'progress' },
+          lualine_z = {
+            { 'location', separator = { right = '' }, left_padding = 2 },
+          },
+        },
+        inactive_sections = {
+          -- lualine_a = { 'filename' },
+          lualine_b = {},
+          lualine_c = {},
+          lualine_x = {},
+          lualine_y = {},
+          lualine_z = { 'location' },
+        },
+        tabline = {},
+        extensions = {},
+      }
+    end,
+  },
 
   require 'amrro.plugins.which-key',
   require 'amrro.plugins.telescope',
