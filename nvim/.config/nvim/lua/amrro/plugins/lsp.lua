@@ -13,6 +13,11 @@ return { -- LSP Configuration & Plugins
     -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
     -- used for completion, annotations and signatures of Neovim apis
     { 'folke/neodev.nvim', opts = {} },
+    {
+      'mrcjkb/rustaceanvim',
+      version = '^4', -- Recommended
+      lazy = false, -- This plugin is already lazy
+    },
   },
   config = function()
     -- Thus, Language Servers are external tools that must be installed separately from
@@ -191,6 +196,7 @@ return { -- LSP Configuration & Plugins
           server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
           require('lspconfig')[server_name].setup(server)
         end,
+        ['rust_analyzer'] = function() end,
       },
     }
   end,

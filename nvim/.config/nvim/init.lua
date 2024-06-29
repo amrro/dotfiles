@@ -157,23 +157,6 @@ sign { name = 'DiagnosticSignWarn', text = '' }
 sign { name = 'DiagnosticSignHint', text = '' }
 sign { name = 'DiagnosticSignInfo', text = '' }
 
-vim.g.rustaceanvim = {
-  -- Plugin configuration
-  tools = {},
-  -- LSP configuration
-  server = {
-    on_attach = function(client, bufnr)
-      -- you can also put keymaps in here
-    end,
-    default_settings = {
-      -- rust-analyzer language server configuration
-      ['rust-analyzer'] = {},
-    },
-  },
-  -- DAP configuration
-  dap = {},
-}
-
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
