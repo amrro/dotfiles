@@ -15,3 +15,9 @@ alias gl='git log'
 alias gs='git status'
 
 
+# nvim 
+alias v='nvim'
+alias vi='nvim'
+alias vim='nvim'
+alias nvim_config='nvim ~/Developer/dotfiles/nvim/.config/nvim/'
+

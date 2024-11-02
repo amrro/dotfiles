@@ -9,6 +9,3 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
-
-JAVA_HOME=$(/usr/libexec/java_home)
-export JAVA_HOME
