@@ -2,6 +2,7 @@ cask_args appdir: '/Applications'
 
 tap 'homebrew/bundle'
 
+brew 'atuin'
 brew 'gh'
 brew 'ripgrep'
 brew 'eza'
