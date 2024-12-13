@@ -21,3 +21,5 @@ alias vi='nvim'
 alias vim='nvim'
 alias nvim_config='nvim ~/Developer/dotfiles/nvim/.config/nvim/'
 
+# ls 
+alias ls='eza --all --long --git --icons --group-directories-first'
