@@ -8,7 +8,7 @@ dimensions.columns = 120
 dimensions.lines = 30
 
 
-decorations = "buttonless"
+decorations = "Full"
 
 opacity = 0.95
 blur = true
@@ -17,7 +17,7 @@ option_as_alt = "Both"
 
 [font]
 normal.family = "JetBrainsMono Nerd Font"
-size = 18
+size = 19
 
 [cursor]
 style.blinking = "On"

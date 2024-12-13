@@ -8,6 +8,9 @@ vim.keymap.set("n", "<D-[>", "<C-o>", { desc = "Jump back in jump list" })
 -- Remap <Cmd-]> to go forward in the jump list (like <C-i>)
 vim.keymap.set("n", "<D-]>", "<C-i>", { desc = "Jump forward in jump list" })
 
+vim.keymap.set({ "i", "x", "n", "s" }, "<D-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
+
+-- Rustacian Keymaps:
 local wk = require("which-key")
 wk.add({
   { "<leader>r", group = "Rust", icon = "" }, -- group
@@ -21,7 +24,7 @@ wk.add({
     mode = "n",
   },
   {
-    "<leader>rd",
+    "<leader>rk",
     function()
       vim.cmd.RustLsp("openDocs")
     end,
@@ -36,6 +39,24 @@ wk.add({
     end,
     desc = "Open Cargo.toml",
     icon = "",
+    mode = "n",
+  },
+  {
+    "<leader>rr",
+    function()
+      vim.cmd.RustLsp("run")
+    end,
+    desc = "Run",
+    icon = "",
+    mode = "n",
+  },
+  {
+    "<leader>rR",
+    function()
+      vim.cmd.RustLsp("runnables")
+    end,
+    desc = "Runnables",
+    icon = "󱧺",
     mode = "n",
   },
   {
@@ -67,7 +88,7 @@ wk.add({
   },
 
   {
-    "<leader>rr",
+    "<leader>rd",
     function()
       vim.cmd.RustLsp({ "renderDiagnostic", "current" })
     end,
