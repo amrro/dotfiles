@@ -5,7 +5,7 @@ return {
     ---@type vim.diagnostic.Opts
     diagnostics = {
       virtual_text = {
-        prefix = " ",
+        prefix = " ",
       },
     },
   },
